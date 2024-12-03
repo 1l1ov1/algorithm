@@ -6,19 +6,38 @@ package class031;
 // 测试链接 : https://leetcode.cn/problems/hamming-distance/
 public class Code06_CountOnesBinarySystem {
 
-	public static int hammingDistance(int x, int y) {
-		return cntOnes(x ^ y);
-	}
+    public static int hammingDistance(int x, int y) {
+        return cntOnes(x ^ y);
+    }
 
-	// 返回n的二进制中有几个1
-	// 这个实现脑洞太大了
-	public static int cntOnes(int n) {
-		n = (n & 0x55555555) + ((n >>> 1) & 0x55555555);
-		n = (n & 0x33333333) + ((n >>> 2) & 0x33333333);
-		n = (n & 0x0f0f0f0f) + ((n >>> 4) & 0x0f0f0f0f);
-		n = (n & 0x00ff00ff) + ((n >>> 8) & 0x00ff00ff);
-		n = (n & 0x0000ffff) + ((n >>> 16) & 0x0000ffff);
-		return n;
-	}
+    // 返回n的二进制中有几个1
+    // 这个实现脑洞太大了
+
+    /**
+     * 计算32位整数n中二进制表示下"1"的个数。
+     *
+     * @param n 输入的32位整数。
+     * @return n的二进制表示中"1"的个数。
+     */
+    public static int cntOnes(int n) {
+        // 第一步：将n分为两个相邻的二进制位一组，每组内的1进行相加
+        n = (n & 0x55555555) + ((n >>> 1) & 0x55555555); // 通过按位与操作，每组内的1相加
+
+        // 第二步：将n分为四个相邻的二进制位一组，每组内的1进行相加
+        n = (n & 0x33333333) + ((n >>> 2) & 0x33333333); // 通过按位与操作，每组内的1相加
+
+        // 第三步：将n分为八个相邻的二进制位一组，每组内的1进行相加
+        n = (n & 0x0f0f0f0f) + ((n >>> 4) & 0x0f0f0f0f); // 通过按位与操作，每组内的1相加
+
+        // 第四步：将n分为十六个相邻的二进制位一组，每组内的1进行相加
+        n = (n & 0x00ff00ff) + ((n >>> 8) & 0x00ff00ff); // 通过按位与操作，每组内的1相加
+
+        // 第五步：将n分为三十二个相邻的二进制位一组，每组内的1进行相加
+        n = (n & 0x0000ffff) + ((n >>> 16) & 0x0000ffff); // 通过按位与操作，每组内的1相加
+
+        // 返回最终结果，即n中"1"的个数
+        return n;
+    }
+
 
 }

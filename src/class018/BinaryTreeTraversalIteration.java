@@ -152,10 +152,12 @@ public class BinaryTreeTraversalIteration {
 			Stack<TreeNode> stack = new Stack<>();
 			while (!stack.isEmpty() || head != null) {
 				if (head != null) {
+					// 一路将左子树进栈
 					stack.push(head);
 					head = head.left;
 				} else {
 					head = stack.pop();
+					// 然后弹出节点，打印，右子树进栈，重复左子树的操作
 					ans.add(head.val);
 					head = head.right;
 				}
@@ -198,13 +200,19 @@ public class BinaryTreeTraversalIteration {
 		if (h != null) {
 			Stack<TreeNode> stack = new Stack<>();
 			stack.push(h);
+			// 如果始终没有打印过节点，h就一直是头节点
+			// 一旦打印过，h就变成打印节点
+			// 之后h的含义 : 上一次打印的节点
 			while (!stack.isEmpty()) {
 				TreeNode cur = stack.peek();
 				if (cur.left != null && h != cur.left && h != cur.right) {
+					// 有左树且左树未处理
 					stack.push(cur.left);
 				} else if (cur.right != null && h != cur.right) {
+					// 有右树且右树未处理
 					stack.push(cur.right);
 				} else {
+					// 左树、右树 都处理过了
 					ans.add(cur.val);
 					h = stack.pop();
 				}

@@ -25,7 +25,9 @@ public class Code06_OneKindNumberLessMtimes {
 		}
 		int ans = 0;
 		for (int i = 0; i < 32; i++) {
+			// 如果cnts[i]不能被m整除，说明该位上1的个数少于m次
 			if (cnts[i] % m != 0) {
+				// 把该位上的1加到ans上
 				ans |= 1 << i;
 			}
 		}

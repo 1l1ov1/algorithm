@@ -45,7 +45,9 @@ public class Code02_RadixSort {
 	public static int bits(int number) {
 		int ans = 0;
 		while (number > 0) {
+			// 位数+1
 			ans++;
+			// 每一位除以进制
 			number /= BASE;
 		}
 		return ans;
@@ -65,6 +67,7 @@ public class Code02_RadixSort {
 			}
 			// 处理成前缀次数累加的形式
 			for (int i = 1; i < BASE; i++) {
+				// 计算前缀和
 				cnts[i] = cnts[i] + cnts[i - 1];
 			}
 			for (int i = n - 1; i >= 0; i--) {

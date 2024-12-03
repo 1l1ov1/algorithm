@@ -40,9 +40,12 @@ public class Code02_TreeSetAndTreeMap {
 		set.add(3);
 		set.add(4);
 		set.add(4);
+		// set.add(2);
 		System.out.println("有序表大小 : " + set.size());
 		while (!set.isEmpty()) {
+			// 从小到大
 			System.out.println(set.pollFirst());
+			// 从大到小
 			// System.out.println(set.pollLast());
 		}
 

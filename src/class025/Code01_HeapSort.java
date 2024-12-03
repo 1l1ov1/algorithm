@@ -43,7 +43,8 @@ public class Code01_HeapSort {
 	}
 
 	// i位置的数，向上调整大根堆
-	public static void heapInsert(int i) {
+	// arr[i] = x, x是新来的！往上看，直到不必父亲大，或者来到0位置（顶部）
+ 	public static void heapInsert(int i) {
 		while (arr[i] > arr[(i - 1) / 2]) {
 			swap(i, (i - 1) / 2);
 			i = (i - 1) / 2;
@@ -53,15 +54,22 @@ public class Code01_HeapSort {
 	// i位置的数，向下调整大根堆
 	// 当前堆的大小为size
 	public static void heapify(int i, int size) {
+		// 左孩子的下标
 		int l = i * 2 + 1;
+		// 如果有左孩子
 		while (l < size) {
+			// 如果右孩子也存在，比较左右孩子，best是左右孩子中较大的
 			int best = l + 1 < size && arr[l + 1] > arr[l] ? l + 1 : l;
+			// 如果当前节点比左右孩子都大，直接跳出
 			best = arr[best] > arr[i] ? best : i;
 			if (best == i) {
 				break;
 			}
+			// 否则就交换
 			swap(best, i);
+			// 然后将交换后的当前节点的下标调整
 			i = best;
+			// 继续向下看，继续看左孩子
 			l = i * 2 + 1;
 		}
 	}

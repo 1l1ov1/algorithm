@@ -66,7 +66,10 @@ public class Code01_QuickSort {
 		// xi : 记录在<=x的区域上任何一个x的位置，哪一个都可以
 		int a = l, xi = 0;
 		for (int i = l; i <= r; i++) {
+			// 如果arr[i] <= x，则arr[i]应该在<=x的区域
+			// 如果arr[i] > x，则arr[i]应该在>x的区域
 			if (arr[i] <= x) {
+				// 交换
 				swap(a, i);
 				if (arr[a] == x) {
 					xi = a;
@@ -74,7 +77,9 @@ public class Code01_QuickSort {
 				a++;
 			}
 		}
+		// 保证arr[a-1] == x
 		swap(xi, a - 1);
+		// 返回划分点的索引
 		return a - 1;
 	}
 
@@ -112,6 +117,9 @@ public class Code01_QuickSort {
 		first = l;
 		last = r;
 		int i = l;
+		// 1）<X first和i交换 first++ i++
+		// 2） == x i++
+		// 3） > x last和i交换 last--
 		while (i <= last) {
 			if (arr[i] == x) {
 				i++;

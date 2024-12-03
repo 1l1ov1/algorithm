@@ -7,12 +7,16 @@ public class Code02_GetMaxWithoutJudge {
 	// 必须保证n一定是0或者1
 	// 0变1，1变0
 	public static int flip(int n) {
+		// 符号位和1相异或
+		// 如果n = 0 表示整数 异或1 为1
+		// 如果n = 1 表示负数 异或1 为0
 		return n ^ 1;
 	}
 
 	// 非负数返回1
 	// 负数返回0
 	public static int sign(int n) {
+		// 无符号右移得到31位得到符号位
 		return flip(n >>> 31);
 	}
 
@@ -38,12 +42,18 @@ public class Code02_GetMaxWithoutJudge {
 		int sb = sign(b);
 		// c的符号
 		int sc = sign(c);
+		// // 通过异或运算判断a和b的符号是否相同，相同为0，不同为1
 		// 判断A和B，符号是不是不一样，如果不一样diffAB=1，如果一样diffAB=0
 		int diffAB = sa ^ sb;
 		// 判断A和B，符号是不是一样，如果一样sameAB=1，如果不一样sameAB=0
+		// 通过翻转diffAB的值来得到相同符号的判断结果，相同为1，不同为0
 		int sameAB = flip(diffAB);
+		// 计算如果选择a作为最大值时的返回值
+		// 如果a和b符号不一样，且a为非负或者a和b的符号一样,那么c要为非负
 		int returnA = diffAB * sa + sameAB * sc;
+		// 计算如果选择b作为最大值时的返回值，通过翻转returnA的值来得到
 		int returnB = flip(returnA);
+		// 根据返回值和原数值的乘积来得到最终结果，确保选择的是较大的数
 		return a * returnA + b * returnB;
 	}
 

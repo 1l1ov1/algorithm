@@ -71,8 +71,10 @@ public class Code01_MergeSort {
 			while (l < n) {
 				m = l + step - 1;
 				if (m + 1 >= n) {
+					// 已经没有右侧
 					break;
 				}
+				// 找到区间的末尾，看是否有没有超过数组的大小
 				r = Math.min(l + (step << 1) - 1, n - 1);
 				merge(l, m, r);
 				l = r + 1;
@@ -87,6 +89,8 @@ public class Code01_MergeSort {
 		int a = l;
 		int b = m + 1;
 		while (a <= m && b <= r) {
+			// 左侧和右侧都还有数
+			// 谁小，谁先被拷贝到help数组中
 			help[i++] = arr[a] <= arr[b] ? arr[a++] : arr[b++];
 		}
 		// 左侧指针、右侧指针，必有一个越界、另一个不越界
@@ -96,6 +100,7 @@ public class Code01_MergeSort {
 		while (b <= r) {
 			help[i++] = arr[b++];
 		}
+		// 拷贝到原数组中
 		for (i = l; i <= r; i++) {
 			arr[i] = help[i];
 		}

@@ -29,13 +29,19 @@ public class Code01_MergeKSortedLists {
 		// 先弹出一个节点，做总头部
 		ListNode h = heap.poll();
 		ListNode pre = h;
+		// 如果有下一个节点
 		if (pre.next != null) {
+			// 就将下一个节点放进去
 			heap.add(pre.next);
 		}
+		// 如果堆不空
 		while (!heap.isEmpty()) {
+			// 得到堆顶
 			ListNode cur = heap.poll();
+			// 指向堆
 			pre.next = cur;
 			pre = cur;
+			// 如果下一个节点还有下一个节点
 			if (cur.next != null) {
 				heap.add(cur.next);
 			}

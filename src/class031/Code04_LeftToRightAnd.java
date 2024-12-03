@@ -8,6 +8,7 @@ public class Code04_LeftToRightAnd {
 
 	public static int rangeBitwiseAnd(int left, int right) {
 		while (left < right) {
+			// 一直减去right的最右侧的1
 			right -= right & -right;
 		}
 		return right;

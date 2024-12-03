@@ -53,7 +53,10 @@ public class Code02_FindLeft {
 			// m = l + (r - l) / 2;
 			m = l + ((r - l) >> 1);
 			if (arr[m] >= num) {
+				// 如果说找到了，那么就将该位置保存
 				ans = m;
+				// 因为有序，可以知道m右侧肯定都>= num
+				// 那么去左侧找是否有
 				r = m - 1;
 			} else {
 				l = m + 1;

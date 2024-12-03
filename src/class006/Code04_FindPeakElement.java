@@ -13,20 +13,26 @@ public class Code04_FindPeakElement {
 
 		public static int findPeakElement(int[] arr) {
 			int n = arr.length;
+			// 如果数组长度为0，说明-1位置是无穷小 1位置是无穷小
 			if (arr.length == 1) {
 				return 0;
 			}
+			// 如果说0 大于1 说明 -1位置无穷小 1位置也是小于的
 			if (arr[0] > arr[1]) {
 				return 0;
 			}
+			// 同理
 			if (arr[n - 1] > arr[n - 2]) {
 				return n - 1;
 			}
+			// 那么在1~n-2的范围内必有至少1个峰值
 			int l = 1, r = n - 2, m = 0, ans = -1;
 			while (l <= r) {
 				m = (l + r) / 2;
+				// 如果说左侧大于中点，说明左侧有峰值
 				if (arr[m - 1] > arr[m]) {
 					r = m - 1;
+					// 如果右侧大于中点，说明右侧有峰值
 				} else if (arr[m] < arr[m + 1]) {
 					l = m + 1;
 				} else {

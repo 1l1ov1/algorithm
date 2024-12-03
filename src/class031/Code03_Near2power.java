@@ -9,6 +9,7 @@ public class Code03_Near2power {
 		if (n <= 0) {
 			return 1;
 		}
+		// 避免当前位是2的幂
 		n--;
 		n |= n >>> 1;
 		n |= n >>> 2;

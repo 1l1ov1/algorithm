@@ -76,7 +76,9 @@ public class Code02_HeapSort {
 		}
 		int size = n;
 		while (size > 1) {
+			// 每次和堆中最大的和最后的元素交换
 			swap(arr, 0, --size);
+			// 因为破坏了堆性质，所以重新堆化
 			heapify(arr, 0, size);
 		}
 	}
